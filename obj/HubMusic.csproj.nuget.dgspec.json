@@ -53,6 +53,30 @@
               "target": "Package",
               "version": "[3.1.1, )"
             },
+            "GraphQL": {
+              "target": "Package",
+              "version": "[8.5.0, )"
+            },
+            "GraphQL.Server": {
+              "target": "Package",
+              "version": "[1.7.0.1, )"
+            },
+            "GraphQL.Server.Transports.AspNetCore": {
+              "target": "Package",
+              "version": "[8.2.0, )"
+            },
+            "GraphQL.Server.Ui.GraphiQL": {
+              "target": "Package",
+              "version": "[8.2.0, )"
+            },
+            "GraphQL.Server.Ui.Playground": {
+              "target": "Package",
+              "version": "[8.2.0, )"
+            },
+            "GraphQL.SystemTextJson": {
+              "target": "Package",
+              "version": "[8.5.0, )"
+            },
             "Microsoft.EntityFrameworkCore": {
               "target": "Package",
               "version": "[9.0.4, )"

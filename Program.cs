@@ -1,3 +1,7 @@
+using GraphQL;
+using GraphQL.Server;
+using GraphQL.SystemTextJson;
+using GraphQL.Types;
 using HubMusic.Models;
 using Microsoft.EntityFrameworkCore;
 
@@ -14,6 +18,24 @@ if (string.IsNullOrEmpty(connectionString))
 
 builder.Services.AddDbContext<ApplicationDbContext>(options =>
     options.UseNpgsql(connectionString));
+
+builder.Services.AddScoped<SongQuery>();
+builder.Services.AddScoped<SongType>();
+builder.Services.AddScoped<ISchema, SongSchema>();
+builder.Services.AddGraphQL(options =>
+{
+    options.AddSystemTextJson(); // Usa System.Text.Json para serialização
+    options.AddSchema<SongSchema>(); // Configura o schema
+    options.AddGraphTypes(typeof(SongSchema).Assembly); // Adiciona os tipos GraphQL
+
+    // Configurar provedor de informações de erro
+    options.AddErrorInfoProvider(opt =>
+    {
+        opt.ExposeExceptionDetails = Environment.GetEnvironmentVariable("ASPNETCORE_ENVIRONMENT") == "Development";
+    });
+
+    // Configuração de execuçã
+});
 
 builder.Services.AddEndpointsApiExplorer();
 builder.Services.AddOpenApiDocument(config =>
@@ -84,5 +106,9 @@ app.MapDelete("/api/song/{id}", async (int id, ApplicationDbContext db) =>
     
     return Results.NoContent();
 });
+
+// Configura o middleware do GraphQL
+app.UseGraphQL<ISchema>();
+app.UseGraphQLPlayground("/ui/playground"); // Interface para testar consultas GraphQL
 
 app.Run();
