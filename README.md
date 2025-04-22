@@ -34,5 +34,5 @@ Siga esses passos para rodar o projeto localmente:
 ```
 5. Abra o navegador em http://localhost:3000 e divirta-se!
 
-Contribuições 🌟
+# Contribuições 🌟
 Este projeto está aberto a sugestões e melhorias. Sinta-se à vontade para abrir um issue ou enviar um pull request. Vamos juntos tornar esse projeto em algo ainda mais incrível!
